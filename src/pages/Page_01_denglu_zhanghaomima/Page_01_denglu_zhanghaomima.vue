@@ -15,9 +15,11 @@
               placeholder="password" v-model="password" />
           </div>
         </div>
-        <div class="codefun-flex-col codefun-justify-start codefun-items-center button" @click="doLogin()" >
-          <span class="text_6" >SIGN IN</span>
-        </div>
+        <a href="#">
+          <div class="codefun-flex-col codefun-justify-start codefun-items-center button" @click="doLogin()" >
+              <span class="text_6" href="#">SIGN IN</span>
+          </div>
+        </a>
       </div>
     </div>
     <div class="codefun-flex-col codefun-shrink-0 group_4 space-y-66">
@@ -32,6 +34,8 @@
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
   components: {},
   data() {
@@ -47,12 +51,12 @@ export default {
         method: "get",
         url: this.GLOBAL.BASE_URL + "auth/login?account=" + this.username + "&password=" + this.password
       })
-  .then(function(res){
-    alert("success")
-  })
-  .catch(function(err){
-
-  })
+    .then(function(res){
+      localStorage.setItem('accessToken', res.data.re)
+      router.push('/home')
+    })
+    .catch(function(err){
+    })
 }
 
   },
@@ -170,6 +174,11 @@ export default {
   font-family: PingFangSC;
   font-weight: 600;
   line-height: 14.5px;
+  text-decoration: none;
+}
+
+.text_6:hover, :active {
+  text-decoration: none;
 }
 
 .group_4 {

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Page_01_denglu_zhanghaomima from '../pages/Page_01_denglu_zhanghaomima/Page_01_denglu_zhanghaomima.vue';
 import Page_02_denglu_shoujihao from '../pages/Page_02_denglu_shoujihao/Page_02_denglu_shoujihao.vue';
 import Page_03_denglu_shoujihaozhuangtai from '../pages/Page_03_denglu_shoujihaozhuangtai/Page_03_denglu_shoujihaozhuangtai.vue';
-import Page_04_dashboard_fenxitai from '../pages/Page_04_dashboard_fenxitai/Page_04_dashboard_fenxitai.vue';
+import Page_04_dashboard_fenxitai from '../pages/home/Home.vue';
 import Page_05_dashboard_jiankongtai from '../pages/Page_05_dashboard_jiankongtai/Page_05_dashboard_jiankongtai.vue';
 import Page_06_dashboard_gongzuotai from '../pages/Page_06_dashboard_gongzuotai/Page_06_dashboard_gongzuotai.vue';
 import Page_07_biaodan_jichubiaodan from '../pages/Page_07_biaodan_jichubiaodan/Page_07_biaodan_jichubiaodan.vue';
@@ -43,8 +43,8 @@ const routes = [
     component: Page_03_denglu_shoujihaozhuangtai,
   },
   {
-    path: '/Page_04_dashboard_fenxitai',
-    name: 'Page_04_dashboard_fenxitai',
+    path: '/home',
+    name: 'Home',
     component: Page_04_dashboard_fenxitai,
   },
   {
