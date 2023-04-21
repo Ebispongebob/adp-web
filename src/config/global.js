@@ -1,4 +1,7 @@
-const BASE_URL = 'http://127.0.0.1:8888/api/'
+const BASE_URL = 'http://127.0.0.1:8081/api/'
 export default {
   BASE_URL
 }
+
+import axios from "axios";
+axios.defaults.headers.common["FYP-AUTH-TOKEN"] = localStorage.getItem("accessToken");

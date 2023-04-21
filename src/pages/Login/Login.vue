@@ -15,11 +15,11 @@
               placeholder="password" v-model="password" />
           </div>
         </div>
-        <a href="#">
-          <div class="codefun-flex-col codefun-justify-start codefun-items-center button" @click="doLogin()" >
-              <span class="text_6" href="#">SIGN IN</span>
-          </div>
-        </a>
+
+        <div class="codefun-flex-col codefun-justify-start codefun-items-center button" @click="doLogin()">
+          <span class="text_6" href="#">SIGN IN</span>
+        </div>
+
       </div>
     </div>
     <div class="codefun-flex-col codefun-shrink-0 group_4 space-y-66">
@@ -45,19 +45,19 @@ export default {
     };
   },
   methods: {
-    doLogin(){
+    doLogin() {
       let that = this
       that.$axios({
         method: "get",
         url: this.GLOBAL.BASE_URL + "auth/login?account=" + this.username + "&password=" + this.password
       })
-    .then(function(res){
-      localStorage.setItem('accessToken', res.data.re)
-      router.push('/home')
-    })
-    .catch(function(err){
-    })
-}
+        .then(function (res) {
+          localStorage.setItem('accessToken', res.data.re)
+          router.push('/home')
+        })
+        .catch(function (err) {
+        })
+    }
 
   },
 };
@@ -166,6 +166,7 @@ export default {
   background-color: #0054fe;
   border-radius: 5px;
   width: 385px;
+  cursor: pointer;
 }
 
 .text_6 {
@@ -177,7 +178,8 @@ export default {
   text-decoration: none;
 }
 
-.text_6:hover, :active {
+.text_6:hover,
+:active {
   text-decoration: none;
 }
 
@@ -228,4 +230,5 @@ export default {
 
 .input-u4nsrNlF {
   padding: 16px 14px 16px 14px;
-}</style>
+}
+</style>

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Page_01_denglu_zhanghaomima from '../pages/Page_01_denglu_zhanghaomima/Page_01_denglu_zhanghaomima.vue';
+import Login from '../pages/Login/Login.vue';
 import Page_02_denglu_shoujihao from '../pages/Page_02_denglu_shoujihao/Page_02_denglu_shoujihao.vue';
 import Page_03_denglu_shoujihaozhuangtai from '../pages/Page_03_denglu_shoujihaozhuangtai/Page_03_denglu_shoujihaozhuangtai.vue';
 import Page_04_dashboard_fenxitai from '../pages/home/Home.vue';
@@ -29,8 +29,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Page_01_denglu_zhanghaomima',
-    component: Page_01_denglu_zhanghaomima,
+    name: 'Login',
+    component: Login,
   },
   {
     path: '/Page_02_denglu_shoujihao',
@@ -141,7 +141,7 @@ const routes = [
     path: '/denglu_shurumima',
     name: 'denglu_shurumima',
     component: Denglu_shurumima,
-  },
+  }
 ];
 
 const router = new VueRouter({
