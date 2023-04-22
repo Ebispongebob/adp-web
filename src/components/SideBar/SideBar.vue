@@ -9,29 +9,32 @@
     </div>
 
     <div class="codefun-flex-col group_2">
-      <div class="codefun-flex-col codefun-justify-start codefun-items-start button">
+      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button">
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
-          <span class="font_5 text_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHOME</span>
+          <!-- <span class="font_5 text_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHOME</span> -->
+          <img class="codefun-shrink-0 image_10"
+            src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" />
+          &nbsp&nbsp&nbsp&nbsp HOME
         </div>
-      </div>
+      </el-button>
     </div>
     <div class="codefun-flex-col group_2">
-      <div class="codefun-flex-col codefun-justify-start codefun-items-start button">
+      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button">
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
           <img class="codefun-shrink-0 image_10"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/641707535a7e3f0310fa7a8d/6417076699e5b100119a4a1e/23310d9c5cfb84425acc37c3804e8344.png" />
-          <span class="font_5 text_2">DataSource Config</span>
+          &nbsp&nbsp&nbsp&nbsp Data-Source
         </div>
-      </div>
+      </el-button>
     </div>
     <div class="codefun-flex-col group_2">
-      <div class="codefun-flex-col codefun-justify-start codefun-items-start button">
+      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button">
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
           <img class="codefun-shrink-0 image_14"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/641707535a7e3f0310fa7a8d/6417076699e5b100119a4a1e/16818853579909110788.png" />
-          <span class="font_5 text_2">Rule Config</span>
+          &nbsp&nbsp&nbsp&nbsp Rule Config
         </div>
-      </div>
+      </el-button>
     </div>
   </div>
 </template>
