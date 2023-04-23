@@ -12,7 +12,7 @@ export default {
     this.getRecordList();
   },
   mounted() {
-    this.startTimer();
+    // this.startTimer();
   },
   beforeDestroy() {
     this.stopTimer();

@@ -9,9 +9,8 @@
     </div>
 
     <div class="codefun-flex-col group_2">
-      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button">
+      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button" @click="homeClick">
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
-          <!-- <span class="font_5 text_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHOME</span> -->
           <img class="codefun-shrink-0 image_10"
             src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" />
           &nbsp&nbsp&nbsp&nbsp HOME
@@ -19,7 +18,7 @@
       </el-button>
     </div>
     <div class="codefun-flex-col group_2">
-      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button">
+      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button"  @click="datasourceClick">
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
           <img class="codefun-shrink-0 image_10"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/641707535a7e3f0310fa7a8d/6417076699e5b100119a4a1e/23310d9c5cfb84425acc37c3804e8344.png" />
@@ -45,8 +44,14 @@ export default {
   data() {
     return {};
   },
-
-  methods: {},
+  methods: {
+    homeClick() {
+      this.$emit('isMain', true, false, false);
+    },
+    datasourceClick() {
+      this.$emit('isDataSource', false, true, false);
+    }
+  }
 };
 </script>
 
@@ -56,6 +61,7 @@ export default {
   background-color: #ffffff;
   box-shadow: 4px 0px 4px #2b2d3703;
   width: 255px;
+  height: 1795px;
 }
 
 .text-wrapper {
@@ -100,96 +106,9 @@ export default {
   margin-left: 26px;
 }
 
-.image_3 {
-  width: 16.5px;
-  height: 15px;
-}
-
-.font_5 {
-  font-size: 14px;
-  font-family: PingFangSC;
-  line-height: 13px;
-  color: #9ba2ab;
-}
-
-.text_2 {
-  color: gray;
-}
-
-.group_4 {
-  padding: 26px 36px 0;
-}
-
-.section_7 {
-  background-color: #0054fe;
-  border-radius: 50%;
-  width: 6px;
-  height: 6px;
-}
-
-.font_8 {
-  font-size: 12px;
-  font-family: PingFangSC;
-  line-height: 10px;
-  color: #74798c;
-}
-
-.text_6 {
-  color: #74798c;
-  line-height: 11px;
-}
-
-.group_7 {
-  margin-top: 38px;
-}
-
-.section_8 {
-  margin-left: 66px;
-  border-radius: 50%;
-  width: 6px;
-  height: 6px;
-  border: solid 1.5px #666666;
-}
-
-.text_12 {
-  line-height: 11px;
-}
-
-.group_9 {
-  margin-top: 38px;
-}
-
-.space-x-20>*:not(:first-child) {
-  margin-left: 20px;
-}
-
-.text_14 {
-  line-height: 11px;
-}
-
-.group_14 {
-  margin-top: 66px;
-  width: 157px;
-}
-
-.space-y-36>*:not(:first-child) {
-  margin-top: 36px;
-}
-
-.space-x-24>*:not(:first-child) {
-  margin-left: 24px;
-}
-
 .image_10 {
   width: 16px;
   height: 16px;
-}
-
-.font_23 {
-  font-size: 14px;
-  font-family: PingFangSC;
-  line-height: 13px;
-  color: #74798c;
 }
 
 .image_14 {

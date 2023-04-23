@@ -1,8 +1,8 @@
 <template>
-    <el-table :data="tableData" style="width: 100%" max-height="400">
-        <el-table-column fixed prop="fixedNumber" width="80" />
-        <el-table-column fixed prop="reference_id" width="180" />
-        <el-table-column prop="count" width="80" />
+    <el-table :data="tableData" style="width: 100%" border max-height="400">
+        <el-table-column fixed prop="fixedNumber" label="#" width="40" />
+        <el-table-column fixed prop="reference_id" label="reference" width="180" />
+        <el-table-column prop="count" label="count" width="80" />
     </el-table>
 </template>
   
@@ -11,12 +11,6 @@ export default {
     created() {
         this.getRankList();
     },
-    watch: {
-    $route(to, from) {
-      // 当路由变化时，重新设置title
-      this.getRankList();
-    }
-  },
     components: {},
     data() {
         return {
