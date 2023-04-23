@@ -8,10 +8,10 @@
           <el-input v-model="dataSource.description"></el-input>
         </el-form-item>
         <el-form-item label="Kafka Broker" prop="kafkaBroker">
-          <el-input v-model="dataSource.kafkaBroker"></el-input>
+          <el-input v-model="dataSource.brokerAddr"></el-input>
         </el-form-item>
         <el-form-item label="Kafka Topic" prop="kafkaTopic">
-          <el-input v-model="dataSource.kafkaTopic"></el-input>
+          <el-input v-model="dataSource.topic"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -34,15 +34,15 @@
         dataSource: {
           referenceId: "",
           description: "",
-          kafkaBroker: "",
-          kafkaTopic: "",
-          createdTime: "",
+          brokerAddr: "",
+          topic: "",
+          createTime: "",
         },
       };
     },
     methods: {
       submitForm() {
-        this.dataSource.createdTime = new Date().toISOString();
+        this.dataSource.createTime = new Date();
         this.$emit("save", this.dataSource);
         this.visible = false;
         this.resetForm();
@@ -51,7 +51,7 @@
         this.dataSource.referenceId = "";
         this.dataSource.description = "";
         this.dataSource.kafkaBroker = "";
-        this.dataSource.kafkaTopic = "";
+        this.dataSource.topic = "";
       },
     },
     watch: {

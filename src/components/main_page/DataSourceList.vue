@@ -12,7 +12,7 @@
           <el-table-column prop="createTime" label="Created Time" width="200"></el-table-column>
           <el-table-column label="Operation" width="100">
             <template v-slot:default="scope">
-              <el-button type="danger" size="mini" @click="deleteDataSource(scope.$index)">删除</el-button>
+              <el-button type="danger" size="mini" @click="deleteDataSource(scope.$index)">delete</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -58,22 +58,52 @@ export default {
       this.dialogVisible = true;
     },
     saveDataSource(dataSource) {
-      this.dataSourceList.push(dataSource);
-      this.filteredData = this.dataSourceList;
+      let that = this;
+      that.$axios({
+        method: "post",
+        url: this.GLOBAL.BASE_URL + "refer/save",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: JSON.stringify(dataSource)
+      })
+        .then(function (res) {
+          that.filteredData = res.data.re
+          that.getDatasourceList()
+        })
+        .catch(function (err) {
+          // Handle error
+        });
+
     },
     deleteDataSource(index) {
-      this.dataSourceList.splice(index, 1);
-      this.filteredData = this.dataSourceList;
+      let that = this;
+      that.$axios({
+        method: "get",
+        url: this.GLOBAL.BASE_URL + "refer/del?referenceId=" + this.filteredData[index].referenceId,
+      })
+        .then(function (res) {
+          that.getDatasourceList()
+        })
+        .catch(function (err) {
+          // Handle error
+        });
     },
     filterData() {
-      this.filteredData = this.dataSourceList.filter(
-        (dataSource) =>
-          dataSource.referenceId.includes(this.search) ||
-          dataSource.description.includes(this.search)
-      );
+      let that = this;
+      that.$axios({
+        method: "get",
+        url: this.GLOBAL.BASE_URL + "refer/get/query?referenceId=" + this.search,
+      })
+        .then(function (res) {
+          that.filteredData = res.data.re
+        })
+        .catch(function (err) {
+          // Handle error
+        });
     },
   },
-};
+}
 </script>
 <style scoped>
 .bg-white {
@@ -95,5 +125,4 @@ export default {
 .list {
   margin-top: 30px;
 }
-
 </style>
