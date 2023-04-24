@@ -12,11 +12,36 @@
           <el-table-column prop="createTime" label="Created Time" width="200"></el-table-column>
           <el-table-column label="Operation" width="100">
             <template v-slot:default="scope">
-              <el-button type="danger" size="mini" @click="deleteDataSource(scope.$index)">delete</el-button>
+              <el-button type="danger" size="mini" @click="deleteDataSource(scope.$index)" style="width: 70px;">delete</el-button>
+              <el-button type="primary" size="mini" @click="getDialogData(scope.$index)" style="margin-left: 0; margin-top: 5px; width: 70px;">rules</el-button>
             </template>
           </el-table-column>
         </el-table>
         <add-data-source-dialog :visible.sync="dialogVisible" @save="saveDataSource"></add-data-source-dialog>
+        <el-dialog :visible.sync="addRuleDialogVisible" title="Association Rules">
+          <el-form :model="rule">
+            <el-table :data="referenceRule">
+              <el-table-column property="referenceId" label="Reference" width="200" />
+              <el-table-column property="ruleName" label="Rule" width="300" />
+              <el-table-column label="Operation">
+                <template v-slot:default="scope">
+                  <el-button type="danger" size="mini" @click="deleteRel(scope.$index)">delete</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+            <el-form-item label="[ADD] Rule name: " :label-width="formLabelWidth" style="margin-top: 10px;">
+              <el-input v-model="rule.ruleName" autocomplete="off" />
+            </el-form-item>
+          </el-form>
+          <template #footer>
+            <span class="dialog-footer">
+              <el-button @click="addRuleDialogVisible = false">Cancel</el-button>
+              <el-button type="primary" @click="associationRule()">
+                Save
+              </el-button>
+            </span>
+          </template>
+        </el-dialog>
       </div>
     </div>
   </div>
@@ -36,8 +61,15 @@ export default {
     return {
       search: "",
       dialogVisible: false,
+      addRuleDialogVisible: false,
+      rule: {
+        referenceId: "",
+        ruleName: ""
+      },
+      formLabelWidth: '140px',
       dataSourceList: [],
       filteredData: [],
+      referenceRule: []
     };
   },
   methods: {
@@ -89,6 +121,50 @@ export default {
           // Handle error
         });
     },
+    deleteRel(index) {
+      let that = this;
+      that.$axios({
+        method: "get",
+        url: this.GLOBAL.BASE_URL + "rule/rel/del?referenceId=" + this.rule.referenceId + "&ruleName=" + this.referenceRule[index].ruleName,
+      })
+        .then(function (res) {
+          that.getDatasourceList()
+        })
+        .catch(function (err) {
+          // Handle error
+        });
+      this.addRuleDialogVisible = false
+    },
+    getDialogData(index) {
+      this.rule.referenceId = this.filteredData[index].referenceId;
+      let that = this;
+      that.$axios({
+        method: "get",
+        url: this.GLOBAL.BASE_URL + "rule/rel/get?referenceId=" + this.filteredData[index].referenceId,
+      })
+        .then(function (res) {
+          that.referenceRule = res.data.re
+        })
+        .catch(function (err) {
+          // Handle error
+        });
+      this.addRuleDialogVisible = true;
+    },
+    associationRule() {
+      let that = this;
+      that.$axios({
+        method: "get",
+        url: this.GLOBAL.BASE_URL + "rule/rel/save?referenceId=" + this.rule.referenceId + "&ruleName=" + that.rule.ruleName,
+      })
+        .then(function (res) {
+          addRuleDialogVisible = false
+        })
+        .catch(function (err) {
+          // Handle error
+        });
+      this.addRuleDialogVisible = false
+      this.rule.ruleName = ""
+    },
     filterData() {
       let that = this;
       that.$axios({
@@ -124,5 +200,10 @@ export default {
 
 .list {
   margin-top: 30px;
+}
+
+.dialog-footer button:first-child {
+  margin-top: 20px;
+  margin-right: 10px;
 }
 </style>
