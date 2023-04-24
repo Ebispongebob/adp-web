@@ -1,0 +1,88 @@
+<template>
+  <el-dialog :visible.sync="dialogVisible" title="添加规则" @close="resetForm">
+    <el-form ref="dataSourceForm" :model="dataSource" label-width="120px">
+      <el-form-item label="ruleName" prop="ruleName">
+        <el-input v-model="dataSource.ruleName"></el-input>
+      </el-form-item>
+      <el-form-item label="eventType" prop="eventType">
+        <el-input v-model="dataSource.eventType"></el-input>
+      </el-form-item>
+      <el-form-item label="windowSize" prop="windowSize">
+        <el-input v-model="dataSource.windowSize"></el-input>
+      </el-form-item>
+      <el-form-item label="threshold" prop="threshold">
+        <el-input v-model="dataSource.threshold"></el-input>
+      </el-form-item>
+      <el-form-item label="condition" prop="condition">
+        <el-input v-model="dataSource.condition"></el-input>
+      </el-form-item>
+      <el-form-item label="alertConfig" prop="alertConfig">
+        <el-input v-model="dataSource.alertConfig"></el-input>
+      </el-form-item>
+      <el-form-item label="createTime" prop="createTime">
+        <el-input v-model="dataSource.createTime"></el-input>
+      </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">取消</el-button>
+      <el-button type="primary" @click="submitForm">保存</el-button>
+    </div>
+  </el-dialog>
+</template>
+  
+<script>
+export default {
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      dialogVisible: this.visible,
+      dataSource: {
+        ruleName: "",
+        eventType: "",
+        windowSize: "",
+        threshold: "",
+        condition: "",
+        alertConfig: "",
+        createTime: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      this.dataSource.createTime = new Date();
+      this.$emit("save", this.dataSource);
+      this.$emit("update:visible", false);
+      this.resetForm();
+    },
+    resetForm() {
+      this.dataSource.ruleName = "";
+      this.dataSource.eventType = "";
+      this.dataSource.windowSize = "";
+      this.dataSource.threshold = "";
+      this.dataSource.condition = "";
+      this.dataSource.alertConfig = "";
+      this.dataSource.createTime = "";
+    },
+  },
+  watch: {
+    visible(val) {
+      this.dialogVisible = val;
+      if (!val) {
+        this.resetForm();
+      }
+    },
+  },
+};
+</script>
+  
+<style scoped>
+.dialog-footer {
+  text-align: right;
+}
+</style>
+  

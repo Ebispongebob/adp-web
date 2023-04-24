@@ -1,9 +1,10 @@
 <template>
   <div class="codefun-flex-row codefun-relative page">
-    <SideBar class="pos" @isMain="handleMain" @isDataSource="handleDataSource" />
+    <SideBar class="pos" @isMain="handleMain" @isDataSource="handleDataSource" @isRuleConfig="handleRuleConfig" />
     <Header1 class="pos_2" />
     <MainPage class="pos_3" v-show="this.isMain" />
     <DataSourceList class="pos_4" v-show="this.isDataSource" />
+    <RuleList class="pos_4" v-show="this.isRuleConfig" />
   </div>
 </template>
 
@@ -12,23 +13,10 @@ import Header1 from '../../components/Header/Header.vue';
 import SideBar from '../../components/SideBar/SideBar.vue';
 import MainPage from '../../components/main_page/MainPage.vue';
 import DataSourceList from '../../components/main_page/DataSourceList.vue'
+import RuleList from '../../components/main_page/RuleList.vue';
 
 export default {
-  created() {
-    // 异步操作
-    asyncOperation().then(() => {
-      // 更新数据
-      this.data = newData;
-      // 触发更新
-      this.$forceUpdate();
-      // 或者
-      this.$nextTick(() => {
-        // 更新数据
-        this.data = newData;
-      });
-    });
-  },
-  components: { Header1, SideBar, MainPage, DataSourceList },
+  components: { Header1, SideBar, MainPage, DataSourceList, RuleList },
   data() {
     return {
       isMain: true,
@@ -46,7 +34,12 @@ export default {
       this.isMain = p1;
       this.isDataSource = p2;
       this.isRuleConfig = p3;
-    }
+    },
+    handleRuleConfig(p1, p2, p3) {
+      this.isMain = p1;
+      this.isDataSource = p2;
+      this.isRuleConfig = p3;
+    },
   },
 };
 </script>

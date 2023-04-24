@@ -22,12 +22,12 @@
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
           <img class="codefun-shrink-0 image_10"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/641707535a7e3f0310fa7a8d/6417076699e5b100119a4a1e/23310d9c5cfb84425acc37c3804e8344.png" />
-          &nbsp&nbsp&nbsp&nbsp Data-Source
+          &nbsp&nbsp&nbsp&nbsp Reference Config
         </div>
       </el-button>
     </div>
     <div class="codefun-flex-col group_2">
-      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button">
+      <el-button class="codefun-flex-col codefun-justify-start codefun-items-start button" @click="ruleConfigClick">
         <div class="codefun-flex-row codefun-items-center group_1 space-x-26">
           <img class="codefun-shrink-0 image_14"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/641707535a7e3f0310fa7a8d/6417076699e5b100119a4a1e/16818853579909110788.png" />
@@ -50,6 +50,9 @@ export default {
     },
     datasourceClick() {
       this.$emit('isDataSource', false, true, false);
+    },
+    ruleConfigClick() {
+      this.$emit('isRuleConfig', false, false, true);
     }
   }
 };
