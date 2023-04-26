@@ -6,12 +6,11 @@
                     @input="filterData"></el-input>
                 <el-button type="primary" @click="addDataSource" class="addButton">Add</el-button>
                 <el-table :data="filteredData" style="width: 100%;" border class="list">
-                    <el-table-column prop="ruleName" label="RuleName" width="100"></el-table-column>
-                    <el-table-column prop="eventType" label="EventType" width="100"></el-table-column>
+                    <el-table-column prop="ruleName" label="RuleName" width="150"></el-table-column>
+                    <el-table-column prop="eventType" label="EventType" width="150"></el-table-column>
                     <el-table-column prop="windowSize" label="WindowSize" width="110"></el-table-column>
                     <el-table-column prop="threshold" label="Threshold" width="110"></el-table-column>
-                    <el-table-column prop="condition" label="Condition" width="120"></el-table-column>
-                    <el-table-column prop="alertConfig" label="AlertConfig" width="164"></el-table-column>
+                    <el-table-column prop="alertConfig" label="AlertConfig" width="184"></el-table-column>
                     <el-table-column prop="createTime" label="CreateTime" width="200"></el-table-column>
                     <el-table-column label="Operation" width="100">
                         <template v-slot:default="scope">

@@ -13,14 +13,8 @@
       <el-form-item label="threshold" prop="threshold">
         <el-input v-model="dataSource.threshold"></el-input>
       </el-form-item>
-      <el-form-item label="condition" prop="condition">
-        <el-input v-model="dataSource.condition"></el-input>
-      </el-form-item>
       <el-form-item label="alertConfig" prop="alertConfig">
         <el-input v-model="dataSource.alertConfig"></el-input>
-      </el-form-item>
-      <el-form-item label="createTime" prop="createTime">
-        <el-input v-model="dataSource.createTime"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -46,9 +40,7 @@ export default {
         eventType: "",
         windowSize: "",
         threshold: "",
-        condition: "",
         alertConfig: "",
-        createTime: "",
       },
     };
   },
@@ -64,9 +56,7 @@ export default {
       this.dataSource.eventType = "";
       this.dataSource.windowSize = "";
       this.dataSource.threshold = "";
-      this.dataSource.condition = "";
       this.dataSource.alertConfig = "";
-      this.dataSource.createTime = "";
     },
   },
   watch: {

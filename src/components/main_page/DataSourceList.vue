@@ -29,7 +29,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <el-form-item label="[ADD] Rule name: " :label-width="formLabelWidth" style="margin-top: 10px;">
+            <el-form-item label="Change Rule: " :label-width="formLabelWidth" style="margin-top: 10px;">
               <el-input v-model="rule.ruleName" autocomplete="off" />
             </el-form-item>
           </el-form>
