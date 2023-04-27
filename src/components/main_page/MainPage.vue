@@ -103,9 +103,6 @@
                                 <div class="codefun-flex-col codefun-justify-start codefun-items-center text-wrapper_3">
                                     <span class="font_8 text_18">All</span>
                                 </div>
-                                <div class="codefun-flex-col codefun-justify-start codefun-items-center text-wrapper_2">
-                                    <span class="font_8 text_15">Select</span>
-                                </div>
                             </div>
                         </div>
                         <div class="codefun-flex-row codefun-justify-between codefun-items-end group_18">
@@ -140,19 +137,19 @@ export default {
     components: { Header1, SideBar, RecordList, RankList, Progress, PieChart, LineChart },
     data() {
         return {
-            alertCounts: 2,
-            todayAlertCounts: 1,
-            lastWeekCompare: 0,
-            yestedayCompare: 0,
-            alertRate: 10,
-            todayAlertRate: 5,
-            eventTimes: 1000,
-            todayEventTimes: 100,
-            weekEventTimes: 800,
-            monthEventTimes: 1000,
-            normalEventTimes: 1000,
-            abnormalEventTimes: 1000,
-            todayErrorRate: 10,
+            alertCounts: 97,
+            todayAlertCounts: 18,
+            lastWeekCompare: 14,
+            yestedayCompare: 28,
+            alertRate: 19,
+            todayAlertRate: 9,
+            eventTimes: 19003,
+            todayEventTimes: 1092,
+            weekEventTimes: 6292,
+            monthEventTimes: 18283,
+            normalEventTimes: 10280,
+            abnormalEventTimes: 8703,
+            todayErrorRate: 11,
             weekErrorRate: 5,
             chartData: [
                 { name: "normal", value: null },

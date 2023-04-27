@@ -1,5 +1,5 @@
 <template>
-    <el-dialog :visible.sync="visible" title="添加数据源" @close="resetForm">
+    <el-dialog :visible.sync="visible" title="Add Reference" @close="resetForm">
       <el-form ref="dataSourceForm" :model="dataSource" label-width="120px">
         <el-form-item label="ReferenceId" prop="referenceId">
           <el-input v-model="dataSource.referenceId"></el-input>
@@ -15,8 +15,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="visible = false">取消</el-button>
-        <el-button type="primary" @click="submitForm">保存</el-button>
+        <el-button @click="visible = false">Cancel</el-button>
+        <el-button type="primary" @click="submitForm">Save</el-button>
       </div>
     </el-dialog>
   </template>

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogVisible" title="添加规则" @close="resetForm">
+  <el-dialog :visible.sync="dialogVisible" title="Edit Rule" @close="resetForm">
     <el-form ref="dataSourceForm" :model="dataSource" label-width="120px">
       <el-form-item label="ruleName" prop="ruleName">
         <el-input v-model="dataSource.ruleName"></el-input>
@@ -18,8 +18,8 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="dialogVisible = false">取消</el-button>
-      <el-button type="primary" @click="submitForm">保存</el-button>
+      <el-button @click="dialogVisible = false">Cancel</el-button>
+      <el-button type="primary" @click="submitForm">Save</el-button>
     </div>
   </el-dialog>
 </template>
