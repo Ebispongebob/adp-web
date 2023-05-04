@@ -4,4 +4,5 @@ export default {
 }
 
 import axios from "axios";
-axios.defaults.headers.common["FYP-AUTH-TOKEN"] = localStorage.getItem("accessToken");
+// axios.defaults.headers.common["FYP-AUTH-TOKEN"] = localStorage.getItem("accessToken");
+axios.defaults.headers.common["FYP-AUTH-TOKEN"] = "adpadmin123789";

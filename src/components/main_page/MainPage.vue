@@ -10,11 +10,11 @@
                         src="https://cdn.pixabay.com/photo/2021/11/06/05/25/alarm-symbol-6772461_1280.png" />
                     <span class="font_3 text_3">{{ alertCounts }}</span>
                 </div>
-                <span class="codefun-self-start font_5 text_7">Today: {{ todayAlertCounts }}</span>
+                <span class="codefun-self-start font_5 text_7"><br></span>
             </div>
             <div class="codefun-flex-row codefun-justify-between">
-                <span class="font_23"> last week: {{ lastWeekCompare }}%</span>
-                <span class="font_23 text_11"> yesteday: {{ yestedayCompare }}% </span>
+                <span class="font_23"> week: {{ lastWeekCompare }}</span>
+                <span class="font_23 text_11"> yesteday: {{ yestedayCompare }} </span>
             </div>
         </div>
         <div class="codefun-flex-col section_4 space-y-19 pos_4">
@@ -26,7 +26,7 @@
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCImQAGsO1xBAIxTwl65llKqumTSO9qATl__7K50yHpXl81J0NU5G1bFNIn4P_Jk3epIk&usqp=CAU" />
                 <span class="font_3 text_3">{{ alertRate }}%</span>
             </div>
-            <span class="codefun-self-start font_5 text_8">Today: {{ todayAlertRate }}</span>
+            <span class="codefun-self-start font_5 text_8"> <br></span>
             <img class="image_7"
                 src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/641707535a7e3f0310fa7a8d/6417076699e5b100119a4a1e/1e88b2c20aba8e9de4218bc9675d1236.png" />
         </div>
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="codefun-flex-col section_27 space-y-10">
-                                <span class="codefun-self-start font_15">Today error rate</span>
+                                <span class="codefun-self-start font_15">Error rate</span>
                                 <div class="codefun-flex-row codefun-justify-between codefun-items-center">
                                     <span class="font_18 text_27">{{ todayErrorRate }}%</span>
                                     <div class="codefun-flex-row codefun-items-center space-x-4">
@@ -132,21 +132,21 @@ export default {
     created() {
         this.getWeekConstant(),
             this.getWeekCount(),
-            this.getPieChartCount()
+            this.getPieChartCount(),
+            this.getEventCounts()
     },
     components: { Header1, SideBar, RecordList, RankList, Progress, PieChart, LineChart },
     data() {
         return {
             alertCounts: 97,
             todayAlertCounts: 18,
-            lastWeekCompare: 14,
-            yestedayCompare: 28,
+            lastWeekCompare: 0,
+            yestedayCompare: 0,
             alertRate: 19,
-            todayAlertRate: 9,
-            eventTimes: 19003,
-            todayEventTimes: 1092,
-            weekEventTimes: 6292,
-            monthEventTimes: 18283,
+            eventTimes: 0,
+            todayEventTimes: 0,
+            weekEventTimes: 0,
+            monthEventTimes: 0,
             normalEventTimes: 10280,
             abnormalEventTimes: 8703,
             todayErrorRate: 11,
@@ -181,6 +181,19 @@ export default {
         };
     },
     methods: {
+        getEventCounts() {
+            let that = this
+            that.$axios({
+                method: "get",
+                url: this.GLOBAL.BASE_URL + "rule/event/count"
+            })
+                .then(function (res) {
+                    that.eventTimes = res.data.re
+                    that.monthEventTimes = res.data.re
+                })
+                .catch(function (err) {
+                })
+        },
         getWeekConstant() {
             let that = this
             that.$axios({
@@ -201,6 +214,10 @@ export default {
             })
                 .then(function (res) {
                     that.chartOptions.series[0].data = res.data.re
+                    that.todayEventTimes = res.data.re[6]
+                    that.weekEventTimes = res.data.re[6]
+                    that.lastWeekCompare = res.data.re[6] - 5
+                    that.weekErrorRate = Math.round(((res.data.re[6] - 5) * 100) / res.data.re[6])
                 })
                 .catch(function (err) {
                 })
@@ -215,6 +232,10 @@ export default {
                     that.chartData[0].value = res.data.re.normal
                     that.chartData[1].value = res.data.re.warning
                     that.chartData[2].value = res.data.re.error
+                    that.normalEventTimes = res.data.re.normal
+                    that.abnormalEventTimes = res.data.re.error
+                    that.todayErrorRate = Math.round(res.data.re.error * 100 / res.data.re.normal)
+                    that.abnormalEventTimes = res.data.re.error
                 })
                 .catch(function (err) {
                 })

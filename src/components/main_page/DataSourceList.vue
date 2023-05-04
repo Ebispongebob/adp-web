@@ -9,15 +9,16 @@
           <el-table-column prop="description" label="Description" width="254"></el-table-column>
           <el-table-column prop="brokerAddr" label="Broker Addr" width="200"></el-table-column>
           <el-table-column prop="topic" label="Topic" width="150"></el-table-column>
-          <el-table-column prop="createTime" label="Created Time" width="200"></el-table-column>
-          <el-table-column label="Operation" width="100">
+          <el-table-column prop="createTime" label="Created Time" width="180"></el-table-column>
+          <el-table-column label="Operation" width="120">
             <template v-slot:default="scope">
-              <el-button type="danger" size="mini" @click="deleteDataSource(scope.$index)" style="width: 70px;">delete</el-button>
-              <el-button type="primary" size="mini" @click="getDialogData(scope.$index)" style="margin-left: 0; margin-top: 5px; width: 70px;">rules</el-button>
+              <el-button type="danger" size="mini" @click="deleteDataSource(scope.$index)" style="width: 90px;">delete</el-button>
+              <el-button type="primary" size="mini" @click="getDialogData(scope.$index)" style="margin-left: 0; margin-top: 5px; width: 90px;">rules</el-button>
+              <el-button type="primary" size="mini" @click="createJob(scope.$index)"  style="margin-left: 0; margin-top: 5px;width: 90px;">createJob</el-button>
             </template>
           </el-table-column>
         </el-table>
-        <add-data-source-dialog :visible.sync="dialogVisible" @save="saveDataSource"></add-data-source-dialog>
+        <add-data-source-dialog :visible.sync="dialogVisible" @save="saveDataSource" />
         <el-dialog :visible.sync="addRuleDialogVisible" title="Association Rules">
           <el-form :model="rule">
             <el-table :data="referenceRule">
@@ -129,6 +130,20 @@ export default {
       })
         .then(function (res) {
           that.getDatasourceList()
+        })
+        .catch(function (err) {
+          // Handle error
+        });
+      this.addRuleDialogVisible = false
+    },
+    createJob(index) {
+      let that = this;
+      that.$axios({
+        method: "get",
+        url: "http://localhost:8090//api/job/create?referenceId=" + this.filteredData[index].referenceId + "&topic=" + this.filteredData[index].topic,
+      })
+        .then(function (res) {
+          alert("create job successfully")
         })
         .catch(function (err) {
           // Handle error
